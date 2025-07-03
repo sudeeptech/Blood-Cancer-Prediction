@@ -22,14 +22,14 @@ y = df['Diagnosis']
 model = RandomForestClassifier()
 model.fit(X, y)
 
-# Set page background and title
+# ---------- 🔴 RED BACKGROUND ----------
 st.markdown(
     """
     <style>
         body {
-            background-color: #f7f7f7;
+            background-color: #FFCCCC;
         }
-        .main {
+        .main > div {
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
@@ -39,11 +39,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("<h1 style='text-align: center; color: #4B0082;'>🧬 Blood Cancer (Leukemia) Prediction App</h1>", unsafe_allow_html=True)
+# ---------- 🧬 Title ----------
+st.markdown("<h1 style='text-align: center; color: #8B0000;'>🧬 Leukemia Prediction App</h1>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Input form
-st.markdown("<h4>🔬 Enter Patient Blood Test Results:</h4>", unsafe_allow_html=True)
+# ---------- 📋 Input Form ----------
+st.markdown("<h4 style='color: #333;'>🔬 Enter Patient Blood Test Results:</h4>", unsafe_allow_html=True)
 
 wbc = st.number_input("WBC", min_value=0, value=5000)
 rbc = st.number_input("RBC", min_value=0.0, value=4.5, format="%.2f")
@@ -51,7 +52,7 @@ platelets = st.number_input("Platelets", min_value=0, value=150000)
 hemoglobin = st.number_input("Hemoglobin", min_value=0.0, value=12.5, format="%.2f")
 age = st.number_input("Age", min_value=0, value=30)
 
-# Prediction
+# ---------- 🔍 Prediction ----------
 if st.button("🔎 Predict"):
     input_data = [[wbc, rbc, platelets, hemoglobin, age]]
     prediction = model.predict(input_data)[0]
@@ -60,22 +61,22 @@ if st.button("🔎 Predict"):
     if prediction == 1:
         st.markdown(
             f"""
-            <div style='background-color:#FFCCCC; padding:20px; border-radius:10px;'>
-                <h3 style='color:#CC0000;'>⚠️ Likely Diagnosis: <b>LEUKEMIA</b></h3>
-                <p style='color:#660000;'>Confidence: <b>{round(prob[1]*100, 2)}%</b></p>
+            <div style='background-color:#ff6666; padding:20px; border-radius:10px;'>
+                <h3 style='color:white;'>⚠️ Likely Diagnosis: <b>LEUKEMIA</b></h3>
+                <p style='color:white;'>Confidence: <b>{round(prob[1]*100, 2)}%</b></p>
             </div>
             """, unsafe_allow_html=True
         )
     else:
         st.markdown(
             f"""
-            <div style='background-color:#D4EDDA; padding:20px; border-radius:10px;'>
+            <div style='background-color:#d4edda; padding:20px; border-radius:10px;'>
                 <h3 style='color:#155724;'>✅ Likely Diagnosis: <b>HEALTHY</b></h3>
                 <p style='color:#155724;'>Confidence: <b>{round(prob[0]*100, 2)}%</b></p>
             </div>
             """, unsafe_allow_html=True
         )
 
-# Footer
+# ---------- 👣 Footer ----------
 st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; color:gray;'>Built with ❤️ using Streamlit</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:#660000;'>Built with ❤️ using Streamlit</p>", unsafe_allow_html=True)
