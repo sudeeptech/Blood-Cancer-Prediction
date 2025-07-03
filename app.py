@@ -22,7 +22,7 @@ y = df['Diagnosis']
 model = RandomForestClassifier()
 model.fit(X, y)
 
-st.title("Leukemia Prediction App")
+st.title("Blood cancer Prediction App")
 
 st.write("Enter patient blood test results:")
 
